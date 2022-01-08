@@ -4,6 +4,7 @@ using Business.Concrete;
 using Core.DataAccess;
 using Core.Services;
 using DataAccess;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.UnitOfWorks;
 using Microsoft.AspNetCore.Builder;
@@ -38,10 +39,11 @@ namespace WebApi
             services.AddSwaggerDocument();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddScoped<ICategoryDal, EfCategoryDal>();
+           // services.AddScoped<ICategoryDal, EfCategoryDal>();
 
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<IAdminService, AdminManager>();
             services.AddScoped(typeof(IEntityRepository<>), typeof(EfEntityRepositoryBase<>));
             services.AddScoped(typeof(IService<>), typeof(Service<>));
 

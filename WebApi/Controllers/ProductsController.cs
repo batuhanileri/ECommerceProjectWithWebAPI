@@ -61,13 +61,13 @@ namespace WebApi.Controllers
             return NoContent();
         }
         //[ServiceFilter(typeof(NotFoundFilter))]
-        // [HttpGet("{id}/category")]
-        //public async Task<IActionResult> GetWithCategoriesById(int id)
-        //{
-        //    var product = await _productService.GetWithCategoryByIdAsync(id);
+        [HttpGet("{id}/category")]
+        public async Task<IActionResult> GetWithCategoriesById(int id)
+        {
+            var product = await _productService.GetWithCategoryByIdAsync(id);
 
-        //    return Ok(_mapper.Map<ProductWithCategoryDto>(product));
+            return Ok(_mapper.Map<ProductWithCategoryDto>(product));
 
-        //}
+        }
     }
 }

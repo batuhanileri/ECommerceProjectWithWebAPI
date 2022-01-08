@@ -19,7 +19,9 @@ namespace DataAccess
         //public DbSet<Customer> Customers { get; set; }
         //public DbSet<Order> Orders { get; set; }
         //public DbSet<OperationClaim> OperationClaims { get; set; }
-        //public DbSet<User> Users { get; set; }
-        //public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<RoleAdmin> RoleAdmins { get; set; }
+        
     }
 }

@@ -1,6 +1,14 @@
+using AutoMapper;
+using Business.Abstract;
+using Business.Concrete;
+using Core.DataAccess;
+using Core.Services;
+using DataAccess;
+using DataAccess.Concrete.EntityFramework;
+using DataAccess.UnitOfWorks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +16,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPIWithCoreMvc.ApiService;
+using WebAPIWithCoreMvc.Mapping;
 
 namespace WebAPIWithCoreMvc
 {
@@ -24,6 +34,26 @@ namespace WebAPIWithCoreMvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpClient<CategoryApiService>(opt => {
+
+                opt.BaseAddress = new Uri(Configuration["baseUrl"]);
+
+            });
+            //services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //// services.AddScoped<ICategoryDal, EfCategoryDal>();
+
+            //services.AddScoped<ICategoryService, CategoryManager>();
+            //services.AddScoped<IProductService, ProductManager>();
+            //services.AddScoped(typeof(IEntityRepository<>), typeof(EfEntityRepositoryBase<>));
+            //services.AddScoped(typeof(IService<>), typeof(Service<>));
+
+            //services.AddDbContext<AppDbContext>(options =>
+            //{
+            //    options.UseSqlServer(Configuration["ConnectionStrings:SqlConStr"].ToString()
+            //        , o => { o.MigrationsAssembly("DataAccess"); });
+
+            //});
+            services.AddAutoMapper(typeof(MapProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

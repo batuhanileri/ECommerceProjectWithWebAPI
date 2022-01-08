@@ -6,7 +6,6 @@ namespace Business.Abstract
 {
     public interface ICategoryService : IService<Category>
     {
-
         Task<Category> GetWithProductsByIdAsync(int categoryId);
     }
 }

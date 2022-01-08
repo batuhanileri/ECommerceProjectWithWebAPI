@@ -30,6 +30,7 @@ namespace Business.Abstract
             await _repository.AddRangeAsync(entities);
             await _unitOfWork.CommitAsync();
             return entities;
+            
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
