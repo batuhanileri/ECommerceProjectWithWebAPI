@@ -1,8 +1,5 @@
-﻿using Entities.Abstract;
-using System;
-using System.Collections.Generic;
+﻿using Core.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Entities.Concrete
 {
@@ -14,8 +11,8 @@ namespace Entities.Concrete
         public int UnitsInStock { get; set; }
 
         [Column(TypeName = "decimal(18,4)")]
-        public decimal UnitPrice { get; set; }                        
-        public bool IsDeleted { get; set; }      
+        public decimal UnitPrice { get; set; }
+        public bool IsDeleted { get; set; }
         public virtual Category Category { get; set; }
     }
 }

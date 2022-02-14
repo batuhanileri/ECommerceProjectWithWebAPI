@@ -20,7 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Entities.Mapping;
 namespace WebApi
 {
     public class Startup
@@ -35,18 +35,18 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(Entities.Mapping.MapProfile));
+            services.AddAutoMapper(typeof(MapProfile));
             services.AddSwaggerDocument();
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //services.AddScoped<IUnitOfWork, UnitOfWork>();
            // services.AddScoped<ICategoryDal, EfCategoryDal>();
 
-            services.AddScoped<ICategoryService, CategoryManager>();
-            services.AddScoped<IProductService, ProductManager>();
-            services.AddScoped<IAdminService, AdminManager>();
-            services.AddScoped(typeof(IEntityRepository<>), typeof(EfEntityRepositoryBase<>));
-            services.AddScoped(typeof(IService<>), typeof(Service<>));
-
+            //services.AddScoped<ICategoryService, CategoryManager>();
+            //services.AddScoped<IProductService, ProductManager>();
+            //services.AddScoped<IAdminService, AdminManager>();
+            //services.AddScoped(typeof(IEntityRepository<>), typeof(EfEntityRepositoryBase<>));
+            //services.AddScoped(typeof(IService<>), typeof(Service<>));
+            
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:SqlConStr"].ToString()
@@ -68,7 +68,9 @@ namespace WebApi
 
             app.UseRouting();
             app.UseOpenApi();
+
             app.UseSwaggerUi3();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

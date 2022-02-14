@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -6,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess
 {
-    public interface IEntityRepository<TEntity> where TEntity : class
+    public interface IEntityRepository<TEntity> where TEntity : class,IEntity , new()
     {
         Task<TEntity> GetByIdAsync(int id);
-        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null);
         Task<IEnumerable<TEntity>> Where(Expression<Func<TEntity, bool>> expression);
         //IEnumerable birden fazla kayıt varsa dönmeyi sağlar
 

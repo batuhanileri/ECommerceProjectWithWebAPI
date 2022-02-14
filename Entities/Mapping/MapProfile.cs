@@ -24,20 +24,7 @@ namespace Entities.Mapping
             CreateMap<Product, ProductWithCategoryDto>();
             CreateMap<ProductWithCategoryDto, Product>();
 
-            CreateMap<Admin, AdminLoginDto>();
-            CreateMap<AdminLoginDto, Admin>();
-
-            CreateMap<Admin, AdminRegisterDto>();
-            CreateMap<AdminRegisterDto, Admin>();
-
-            CreateMap<Admin, AdminDto>();
-            CreateMap<AdminDto, Admin>();
-
-            CreateMap<User, UserForLoginDto>();
-            CreateMap<UserForLoginDto, User>();
-
-            CreateMap<User, UserForRegisterDto>();
-            CreateMap<UserForRegisterDto, User>();
+            
         }
     }
 }

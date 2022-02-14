@@ -1,4 +1,7 @@
-﻿using Core.DataAccess;
+﻿using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.DataAccess;
+using Core.Entities;
 using Core.Services;
 using DataAccess.UnitOfWorks;
 using System;
@@ -7,9 +10,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Services
 {
-    public class Service<TEntity> : IService<TEntity> where TEntity : class
+    public class Service<TEntity> : IService<TEntity> where TEntity : class, IEntity, new()
     {
         public readonly IUnitOfWork _unitOfWork;
         private readonly IEntityRepository<TEntity> _repository;
@@ -18,6 +21,8 @@ namespace Business.Abstract
             _unitOfWork = unitOfWork;
             _repository = repository;
         }
+
+        [ValidationAspect(typeof(ProductValidator))]
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             await _repository.AddAsync(entity);
@@ -33,7 +38,7 @@ namespace Business.Abstract
             
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null)
         {
             return await _repository.GetAllAsync();
         }

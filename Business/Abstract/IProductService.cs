@@ -1,5 +1,6 @@
 ﻿using Core.Services;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,8 @@ namespace Business.Abstract
     {
 
         Task<Product> GetWithCategoryByIdAsync(int productId);
+        Task<IEnumerable<Product>> GetByUnitPrice(decimal min, decimal max);
+        Task<List<ProductDto>> GetProductDetails();
+        
     }
 }

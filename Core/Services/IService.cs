@@ -9,7 +9,7 @@ namespace Core.Services
     public interface IService<TEntity> where TEntity : class
     {
         Task<TEntity> GetByIdAsync(int id);
-        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null);
         Task<IEnumerable<TEntity>> Where(Expression<Func<TEntity, bool>> expression);
         Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> expression);
         Task<TEntity> AddAsync(TEntity entity);

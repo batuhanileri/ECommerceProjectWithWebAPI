@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:WebApi.Controllers.CategoriesController">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.#ctor(Business.Abstract.ICategoryService,AutoMapper.IMapper)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:WebApi.Controllers.ProductsController">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.#ctor(Business.Abstract.IProductService,AutoMapper.IMapper)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.GetProductDetails">
+            <summary>
+            Tüm ürünleri detaylı listeler.
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.GetByUnitPrice(System.Decimal,System.Decimal)">
+            <summary>
+            İki fiyat arasındaki ürünleri listeler
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.GetById(System.Int32)">
+            <summary>
+            Id'ye göre ürün getirir
+            </summary>
+            <param name="id"> Ürün Id'sini giriniz </param>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.Save(Entities.DTOs.ProductDto)">
+            <summary>
+            Ürün ekler
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.Update(Entities.DTOs.ProductDto)">
+            <summary>
+            Ürün Günceller
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.Remove(System.Int32)">
+            <summary>
+            Ürün Siler
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.GetWithCategoriesById(System.Int32)">
+            <summary>
+            Hem ürünü hem o ürünün bağlı olduğu kategoriyi getirir.
+            </summary>
+        </member>
+    </members>
+</doc>
