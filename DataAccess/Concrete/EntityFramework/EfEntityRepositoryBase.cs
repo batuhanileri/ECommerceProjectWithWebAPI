@@ -73,5 +73,12 @@ namespace DataAccess.Concrete.EntityFramework
             _context.Entry(entity).State = EntityState.Modified;
             return entity;
         }
+
+        public void Add(TEntity entity)
+        {
+            var addedEntity = _context.Entry(entity);
+            addedEntity.State = EntityState.Added;
+            _context.SaveChanges();
+        }
     }
 }

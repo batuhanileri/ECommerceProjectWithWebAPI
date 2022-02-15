@@ -27,5 +27,7 @@ namespace Business.Concrete
         {
             return await _unitOfWork.Users.SingleOrDefaultAsync(u => u.Email == email); 
         }
+
+       
     }
 }

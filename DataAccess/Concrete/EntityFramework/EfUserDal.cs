@@ -27,6 +27,13 @@ namespace DataAccess.Concrete.EntityFramework
 
             
         }
+
+        public async Task<User> GetByMail(string Email)
+        {
+            return await _appDbContext.Users.SingleOrDefaultAsync(x=>x.Email==Email);
+        }
+
+        
     }
 }
 

@@ -21,6 +21,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Entities.Mapping;
+using Core.Utilities.Security.JWT;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Core.Utilities.Security.Encryption;
+
 namespace WebApi
 {/// <summary>
  ///
@@ -49,21 +54,40 @@ namespace WebApi
             services.AddSwaggerDocument();
 
             //services.AddScoped<IUnitOfWork, UnitOfWork>();
-           // services.AddScoped<ICategoryDal, EfCategoryDal>();
+            // services.AddScoped<ICategoryDal, EfCategoryDal>();
 
             //services.AddScoped<ICategoryService, CategoryManager>();
             //services.AddScoped<IProductService, ProductManager>();
             //services.AddScoped<IAdminService, AdminManager>();
             //services.AddScoped(typeof(IEntityRepository<>), typeof(EfEntityRepositoryBase<>));
             //services.AddScoped(typeof(IService<>), typeof(Service<>));
-            
+            services.AddControllers();
+
+            var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidIssuer = tokenOptions.Issuer,
+                        ValidAudience = tokenOptions.Audience,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+                    };
+                });
+
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:SqlConStr"].ToString()
-                    , o => { o.MigrationsAssembly("DataAccess"); });
+                     , o => { o.MigrationsAssembly("DataAccess") ; });
 
             });
-            services.AddControllers();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,7 +107,7 @@ namespace WebApi
             app.UseOpenApi();
 
             app.UseSwaggerUi3();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

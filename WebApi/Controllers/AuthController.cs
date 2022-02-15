@@ -18,15 +18,14 @@ namespace WebApi.Controllers
     public class AuthController : ControllerBase
     {
         private IAuthService _authService;
-
-        private readonly IMapper _mapper;
+      
         /// <summary>
         ///
         /// </summary>
-        public AuthController(IAuthService authService, IMapper mapper)
+        public AuthController(IAuthService authService)
         {
             _authService = authService;
-            _mapper = mapper;
+            
         }
         /// <summary>
         ///
@@ -42,11 +41,11 @@ namespace WebApi.Controllers
                 return BadRequest(userToLogin.Message);
             }
 
-            var result = await _authService.CreateAccessToken(userToLogin.Data);
+            var result =await  _authService.CreateAccessToken(userToLogin.Data);
             if (result.Success)
             {
-                //return Ok(result.Data);
-                return Ok(_mapper.Map<IEnumerable<UserForLoginDto>>(result));
+                return Ok(result.Data);
+                //return Ok(_mapper.Map<IEnumerable<UserForLoginDto>>(result));
             }
 
             return BadRequest(result.Message);
@@ -57,18 +56,19 @@ namespace WebApi.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-            var userExists = _authService.UserExists(userForRegisterDto.Email);
+            var userExists =  _authService.UserExists(userForRegisterDto.Email);
             if (!userExists.Success)
             {
                 return BadRequest(userExists.Message);
             }
 
-            var registerResult = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
-            var result = await _authService.CreateAccessToken(registerResult.Data);
+            var registerResult = await _authService.Register(userForRegisterDto, userForRegisterDto.Password);
+
+            var result =await  _authService.CreateAccessToken(registerResult.Data);
             if (result.Success)
             {
-                return Ok(_mapper.Map<IEnumerable<UserForLoginDto>>(result));
-                //return Ok(result.Data);
+                //return Ok(_mapper.Map<IEnumerable<UserForLoginDto>>(result));
+                return Ok(result.Data);
             }
 
             return BadRequest(result.Message);

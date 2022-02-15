@@ -22,12 +22,18 @@ namespace Business.Services
             _repository = repository;
         }
 
-        [ValidationAspect(typeof(ProductValidator))]
+        //[ValidationAspect(typeof(ProductValidator))]
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             await _repository.AddAsync(entity);
             await _unitOfWork.CommitAsync();
             return entity;
+        }
+        public TEntity Add(TEntity entity)
+        {
+             _repository.Add(entity);
+             _unitOfWork.Commit();
+             return entity;
         }
 
         public async Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities)

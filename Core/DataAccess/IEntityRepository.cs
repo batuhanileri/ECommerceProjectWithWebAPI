@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess
 {
-    public interface IEntityRepository<TEntity> where TEntity : class, IEntity , new()
+    public interface IEntityRepository<TEntity> where TEntity : class, IEntity 
     {
         Task<TEntity> GetByIdAsync(int id);
         Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null);
@@ -21,5 +21,6 @@ namespace Core.DataAccess
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
         TEntity Update(TEntity entity);
+        void Add(TEntity entity);
     }
 }

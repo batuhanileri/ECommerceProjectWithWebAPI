@@ -10,5 +10,6 @@ namespace Business.Abstract
     {
         Task<List<OperationClaim>> GetClaims(User user);
         Task<User> GetByMail(string email);
+        
     }
 }

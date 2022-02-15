@@ -4,12 +4,62 @@
         <name>WebApi</name>
     </assembly>
     <members>
+        <member name="T:WebApi.Controllers.AuthController">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.AuthController.#ctor(Business.Abstract.IAuthService)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.AuthController.Login(Entities.DTOs.UserForLoginDto)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.AuthController.Register(Entities.DTOs.UserForRegisterDto)">
+             <summary>
+            
+             </summary>
+        </member>
         <member name="T:WebApi.Controllers.CategoriesController">
              <summary>
             
              </summary>
         </member>
         <member name="M:WebApi.Controllers.CategoriesController.#ctor(Business.Abstract.ICategoryService,AutoMapper.IMapper)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.GetAll">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.GetById(System.Int32)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.Save(Entities.DTOs.CategoryDto)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.Update(Entities.DTOs.CategoryDto)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.Remove(System.Int32)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.GetWithProductsById(System.Int32)">
              <summary>
             
              </summary>
@@ -59,6 +109,61 @@
             <summary>
             Hem ürünü hem o ürünün bağlı olduğu kategoriyi getirir.
             </summary>
+        </member>
+        <member name="T:WebApi.Controllers.WeatherForecastController">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.WeatherForecastController.#ctor(Microsoft.Extensions.Logging.ILogger{WebApi.Controllers.WeatherForecastController})">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Controllers.WeatherForecastController.Get">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:WebApi.Program">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Program.Main(System.String[])">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Program.CreateHostBuilder(System.String[])">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:WebApi.Startup">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:WebApi.Startup.Configuration">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WebApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+             <summary>
+            
+             </summary>
         </member>
     </members>
 </doc>

@@ -17,5 +17,6 @@ namespace Core.Services
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
         TEntity Update(TEntity entity);
+        TEntity Add(TEntity entity);
     }
 }
