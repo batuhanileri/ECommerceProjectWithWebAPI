@@ -13,10 +13,13 @@ namespace DataAccess.UnitOfWorks
 
         private EfProductDal _productRepository;
 
-        private EfCategoryDal _categoryRepository;      
+        private EfCategoryDal _categoryRepository; 
+        
+        private EfUserDal _userRepository;
         public IProductDal Products => _productRepository = _productRepository ?? new EfProductDal(_appDbContext);
         public ICategoryDal Categories => _categoryRepository = _categoryRepository ?? new EfCategoryDal(_appDbContext);
-      
+        public IUserDal Users => _userRepository = _userRepository ?? new EfUserDal(_appDbContext);
+
 
         public UnitOfWork(AppDbContext appDbContext)
         {

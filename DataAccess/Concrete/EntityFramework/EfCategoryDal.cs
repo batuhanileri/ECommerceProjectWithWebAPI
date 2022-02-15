@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCategoryDal : EfEntityRepositoryBase<Category >, ICategoryDal
+    public partial class EfCategoryDal : EfEntityRepositoryBase<Category >, ICategoryDal
     {
         private AppDbContext _appDbContext { get => _context as AppDbContext; }
         public EfCategoryDal(AppDbContext context) : base(context)

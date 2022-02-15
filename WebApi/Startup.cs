@@ -22,17 +22,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Entities.Mapping;
 namespace WebApi
-{
+{/// <summary>
+ ///
+ /// </summary>
     public class Startup
     {
+        /// <summary>
+        ///
+        /// </summary>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
+        /// <summary>
+        ///
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        ///
+        /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(MapProfile));
@@ -57,6 +67,9 @@ namespace WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        ///
+        /// </summary>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

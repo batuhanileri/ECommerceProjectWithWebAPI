@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
+    /// <summary>
+    ///
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -17,12 +20,16 @@ namespace WebApi.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-
+        /// <summary>
+        ///
+        /// </summary>
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
-
+        /// <summary>
+        ///
+        /// </summary>
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {

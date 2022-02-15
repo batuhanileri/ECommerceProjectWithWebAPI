@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess
 {
-    public interface IEntityRepository<TEntity> where TEntity : class,IEntity , new()
+    public interface IEntityRepository<TEntity> where TEntity : class, IEntity , new()
     {
         Task<TEntity> GetByIdAsync(int id);
         Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null);

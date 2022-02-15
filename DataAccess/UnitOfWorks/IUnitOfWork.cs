@@ -10,7 +10,7 @@ namespace DataAccess.UnitOfWorks
     {
         IProductDal Products { get; }
         ICategoryDal Categories { get; }
-        
+        IUserDal Users { get; }
         Task CommitAsync();//implemente ettiğimiz zaman ef tarafında ki savechanges metodunu çağırıcak
         void Commit();
     }

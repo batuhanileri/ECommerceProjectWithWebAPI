@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -14,6 +15,12 @@ namespace Entities.Mapping
 
             CreateMap<Product, ProductDto>();
             CreateMap<ProductDto, Product>();
+
+            CreateMap<User, UserForLoginDto>();
+            CreateMap<UserForLoginDto, User>();
+
+            CreateMap<User, UserForRegisterDto>();
+            CreateMap<UserForRegisterDto, User>();
 
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();

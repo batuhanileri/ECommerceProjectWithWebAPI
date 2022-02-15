@@ -8,12 +8,12 @@ using DataAccess.Concrete.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Autofac;
 using DataAccess.UnitOfWorks;
 using Core.DataAccess;
 using Core.Services;
 using Business.Services;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
 
 namespace Business.DependencyResolvers.Autofac
 {
@@ -24,7 +24,10 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().SingleInstance();
-            
+            builder.RegisterType<UserManager>().As<IUserService>();
+           
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
             builder.RegisterGeneric(typeof(Business.Services.Service<>)).As(typeof(IService<>)).InstancePerDependency(); 
             builder.RegisterGeneric(typeof(EfEntityRepositoryBase<>)).As(typeof(IEntityRepository<>)).InstancePerDependency();
