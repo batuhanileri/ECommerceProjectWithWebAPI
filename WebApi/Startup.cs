@@ -83,7 +83,7 @@ namespace WebApi
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:SqlConStr"].ToString()
-                     , o => { o.MigrationsAssembly("DataAccess") ; });
+                     , o => { o.MigrationsAssembly("DataAccess") ; }).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
             });
 

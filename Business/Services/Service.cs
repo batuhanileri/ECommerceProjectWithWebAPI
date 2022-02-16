@@ -15,14 +15,14 @@ namespace Business.Services
     public class Service<TEntity> : IService<TEntity> where TEntity : class, IEntity, new()
     {
         public readonly IUnitOfWork _unitOfWork;
-        private readonly IEntityRepository<TEntity> _repository;
+        public readonly IEntityRepository<TEntity> _repository;
         public Service(IUnitOfWork unitOfWork, IEntityRepository<TEntity> repository)
         {
             _unitOfWork = unitOfWork;
             _repository = repository;
         }
 
-        //[ValidationAspect(typeof(ProductValidator))]
+        
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             await _repository.AddAsync(entity);

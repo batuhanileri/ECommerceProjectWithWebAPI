@@ -41,8 +41,8 @@ namespace Business.Concrete
                 FirstName = userForRegisterDto.FirstName,
                 LastName = userForRegisterDto.LastName,
                 PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
-                Telephone=null,
+                PasswordSalt = passwordSalt,   
+                Telephone =userForRegisterDto.Telephone,
                 Status = true
             };
             await _userService.AddAsync(user);
@@ -68,9 +68,9 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(userToCheck, "Başarılı giriş");
         }
 
-        public IResult UserExists(string email)
+        public async Task<IResult> UserExists(string email)
         {
-            if (_unitOfWork.Users.GetByMail(email) == null)
+            if (await _unitOfWork.Users.GetByMail(email) != null)
             {
                 return new ErrorResult("Kullanıcı mevcut");
             }

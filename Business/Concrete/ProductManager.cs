@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Services;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.DataAccess;
 using DataAccess.UnitOfWorks;
 using Entities.Concrete;
@@ -13,8 +15,17 @@ namespace Business.Concrete
 {
     public class ProductManager : Service<Product>, IProductService
     {
+        
         public ProductManager(IUnitOfWork unitOfWork, IEntityRepository<Product> repository) : base(unitOfWork, repository)
         {
+            
+        }
+        [ValidationAspect(typeof(ProductValidator))]
+        public async Task<Product> ProductAddAsync(Product product)
+        {
+            await _repository.AddAsync(product);
+            await _unitOfWork.CommitAsync();
+            return product;
         }
 
         public async Task<IEnumerable<Product>> GetByUnitPrice(decimal min, decimal max)

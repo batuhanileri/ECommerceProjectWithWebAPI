@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Entities.Concrete;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
@@ -70,11 +72,13 @@ namespace WebApi.Controllers
         /// <summary>
         /// Ürün ekler
         /// </summary>
+        
         [HttpPost]
+       
         public async Task<IActionResult> Save(ProductDto productDto)
         {
 
-            var newProduct = await _productService.AddAsync(_mapper.Map<Product>(productDto));
+            var newProduct = await _productService.ProductAddAsync(_mapper.Map<Product>(productDto));
             return Created(string.Empty, _mapper.Map<ProductDto>(newProduct));
         }
 
