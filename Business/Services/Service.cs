@@ -22,7 +22,6 @@ namespace Business.Services
             _repository = repository;
         }
 
-        
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             await _repository.AddAsync(entity);

@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using WebAPIWithCoreMvc.ApiService;
-using WebAPIWithCoreMvc.Dtos;
+
 
 namespace WebAPIWithCoreMvc.Controllers
 {
@@ -28,14 +32,15 @@ namespace WebAPIWithCoreMvc.Controllers
             var categories = await _categoryApiService.GetAllAsync(); // Api ile işlem yapıyor.
             return View(_mapper.Map<IEnumerable<CategoryDto>>(categories));
         }
-        //public async Task<IActionResult> abc(int id)
-        //{
-        //    //var categories = await _categoryService.GetAllAsync(); // Katmandan gelen verilerle işlem yapıyor 
 
-        //    var categories = await _categoryApiService.GetWithProductsByIdAsync(id); 
+        public async Task<IActionResult> GetWithProductsById(int id)
+        {
+                        
+            var responseMessage =await  GlobalVariables.webApiClient.GetAsync($"categories/{id}/products");   
+            
+            return View(responseMessage.Content.ReadAsAsync<CategoryWithProductDto>().Result);
 
-        //    return View(_mapper.Map<IEnumerable<CategoryWithProductDto>>(categories));
-        //}
+        }
         public IActionResult Create()
         {
             return View();

@@ -30,7 +30,7 @@ namespace WebApi.Controllers
         /// <summary>
         ///
         /// </summary>
-        [HttpPost("login")]
+        [HttpPost]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
             

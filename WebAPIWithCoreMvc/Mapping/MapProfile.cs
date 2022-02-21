@@ -22,6 +22,8 @@ namespace WebAPIWithCoreMvc.Mapping
 
             CreateMap<Category, CategoryWithProductDto>();
             CreateMap<CategoryWithProductDto, Category>();
+
+           
         }
     }
 }

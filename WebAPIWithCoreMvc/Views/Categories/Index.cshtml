@@ -1,8 +1,11 @@
 ﻿@model IEnumerable<CategoryDto>
 
 @{
+
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <h1>Kategoriler</h1>
 <a class="btn btn-primary" asp-action="Create">Kategori Ekle</a>
 <br />
@@ -21,10 +24,13 @@
             <tr>
                 <td>@item.CategoryId</td>
                 <td>
-                    <a asp-action="Index2" asp-route-id="@item.CategoryId">@item.CategoryName</a>
+                    <a asp-action="GetWithProductsById" asp-route-id="@item.CategoryId">@item.CategoryName</a>
+                </td>
+                <td>
                     <a asp-action="Update" asp-route-id="@item.CategoryId">Güncelle</a>
                     <a asp-action="Delete" asp-route-id="@item.CategoryId">Sil</a>
                 </td>
+                
             </tr>
 
         }

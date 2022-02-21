@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Services;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -20,6 +21,7 @@ namespace Business.Concrete
         {
             
         }
+        [SecuredOperation("product.add")]
         [ValidationAspect(typeof(ProductValidator))]
         public async Task<Product> ProductAddAsync(Product product)
         {

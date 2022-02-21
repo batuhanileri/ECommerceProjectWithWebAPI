@@ -25,6 +25,9 @@ using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Utilities.Security.Encryption;
+using Core.Utilities.IoC;
+using Core.DependencResolvers;
+using Core.Extensions;
 
 namespace WebApi
 {/// <summary>
@@ -61,6 +64,7 @@ namespace WebApi
             //services.AddScoped<IAdminService, AdminManager>();
             //services.AddScoped(typeof(IEntityRepository<>), typeof(EfEntityRepositoryBase<>));
             //services.AddScoped(typeof(IService<>), typeof(Service<>));
+            services.AddCors();
             services.AddControllers();
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
@@ -86,8 +90,10 @@ namespace WebApi
                      , o => { o.MigrationsAssembly("DataAccess") ; }).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
             });
+            services.AddDependencyResolvers(new ICoreModule[] {
+            new CoreModule()
+            });
 
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -104,9 +110,15 @@ namespace WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
             app.UseOpenApi();
 
             app.UseSwaggerUi3();
+
             app.UseAuthentication();
             app.UseAuthorization();
 
